@@ -1,16 +1,22 @@
-# anime_guide
 
-A new Flutter project.
+# AnimeGuide
 
-## Getting Started
+Aplicación móvil desarrollada en **Flutter** cuyo objetivo es informar a los usuarios sobre animes y mangas (populares y en emisión). No reproduce capítulos: ofrece ficha informativa completa de cada título.
 
-This project is a starting point for a Flutter application.
+## Descripción
+AnimeGuide muestra por cada anime/manga: portada, título, sinopsis, género, año, número de capítulos/temporadas, estado (en emisión / finalizado), enlace al tráiler, enlaces externos (dónde ver/leer/comprar), si contiene manga, personajes principales, creador y estudio/house animadora. Permite marcar títulos como favoritos y consultar listas filtradas o buscadas.
 
-A few resources to get you started if this is your first Flutter project:
+## Funcionalidades principales
+- Listado de animes (recomendados / en emisión / categorías).  
+- Búsqueda de animes por nombre o género.  
+- Pantalla de detalle con: portada grande, título, chips (género · episodios · estado), sinopsis (colapsable), ficha técnica (año, creador, estudio), personajes principales, enlaces externos y botón **Agregar a favoritos**.   
+- Pantalla de bienvenida.  
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Pantallas
+- **Home** — Sucesion de títulos en emisión + listas por categoría.  
+- **Search** — Búsqueda en especifico de titulo.  
+- **Favorites** — Lista de animes/mangas favoritos.  
+- **Detail** — Ficha del anime/manga.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+
