@@ -16,7 +16,9 @@ class MyApp extends StatelessWidget {
       title: 'Anime Guide',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color.fromARGB(255, 225, 225, 225),
+        ),
         textTheme: GoogleFonts.sairaSemiCondensedTextTheme(
           Theme.of(context).textTheme,
         ),
