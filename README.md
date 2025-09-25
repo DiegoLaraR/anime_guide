@@ -19,4 +19,24 @@ AnimeGuide muestra por cada anime/manga: portada, título, sinopsis, género, a�
 - **Detail** — Ficha del anime/manga.
 
 
+```mermaid
+stateDiagram-v2
+    [*] --> SplashScreen
+    SplashScreen --> Home
+    Home --> AnimeDetails
+    Home --> Search
+    Home --> Favorite
 
+    Search --> Home
+    Search --> Favorite
+    Search --> AnimeDetails
+
+    Favorite --> Home
+    Favorite --> Search
+    Favorite --> AnimeDetails
+
+    AnimeDetails --> Home
+    AnimeDetails --> Search
+    AnimeDetails --> Favorite
+    
+```
