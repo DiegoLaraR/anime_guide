@@ -1,22 +1,21 @@
-import 'package:anime_guide/pages/favorite.dart';
-import 'package:flutter/material.dart';
 import 'package:anime_guide/pages/home.dart';
+import 'package:anime_guide/pages/search.dart';
+import 'package:flutter/material.dart';
 
-class Search extends StatefulWidget {
-  const Search({super.key});
+class Favorite extends StatefulWidget {
+  const Favorite({super.key});
 
   @override
-  State<Search> createState() => _SearchState();
+  State<Favorite> createState() => _FavoriteState();
 }
 
-class _SearchState extends State<Search> {
+class _FavoriteState extends State<Favorite> {
   Color backgroundColor1 = const Color.fromARGB(255, 39, 39, 39);
   Color letterColor = const Color.fromARGB(255, 225, 225, 225);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: backgroundColor1,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -25,13 +24,15 @@ class _SearchState extends State<Search> {
             SizedBox(
               width: 300,
               child: Text(
-                "En esta pantalla el usuario podra buscar un anime o manga en especifico",
+                "En esta pantalla el usuario podra ver los animes/mangas que haya agregado a favoritos",
                 style: TextStyle(color: letterColor, fontSize: 30),
               ),
             ),
           ],
         ),
       ),
+
+      backgroundColor: backgroundColor1,
       persistentFooterButtons: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,

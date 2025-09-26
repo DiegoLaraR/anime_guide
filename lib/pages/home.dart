@@ -1,4 +1,7 @@
+import 'package:anime_guide/models/anime.dart';
 import 'package:anime_guide/pages/anime_details.dart';
+import 'package:anime_guide/pages/favorite.dart';
+import 'package:anime_guide/pages/search.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -12,7 +15,6 @@ class _HomeState extends State<Home> {
   Color backgroundColor1 = const Color.fromARGB(255, 39, 39, 39);
   Color letterColor = const Color.fromARGB(255, 225, 225, 225);
   double opacity = 0;
-
   @override
   void initState() {
     super.initState();
@@ -24,51 +26,10 @@ class _HomeState extends State<Home> {
     });
   }
 
-  final List<String> creaciones = const [
-    'Pizza',
-    'Sandia',
-    'Aji',
-    'Kimetsu no Yaiba',
-  ];
-
-  final List<String> genre = const ['Gourmet', 'Gourmet', 'Gourmet', 'Shonen'];
-
-  final List<String> season = const [
-    'Temporada 1',
-    'Temporada 1',
-    'Temporada 1',
-    'Temporada 4',
-  ];
-
-  final List<String> description = const [
-    'Temporada 1',
-    'Temporada 1',
-    'Temporada 1',
-    'Kimetsu no Yaiba cuenta la historia de Tanjiro Kamado, un joven bondadoso que vive en las montañas con su familia. Tras regresar un día y encontrar a toda su familia asesinada por demonios, descubre que su hermana Nezuko ha sobrevivido, pero ha sido transformada en demonio. Decidido a salvarla y vengar a su familia, Tanjiro se une a los Cazadores de Demonios, enfrentándose a criaturas sobrenaturales y peligros mortales. La serie explora la fuerza del vínculo familiar, la lucha entre el bien y el mal, y la determinación frente a la adversidad.',
-  ];
-
-  final List<String> state = const ['Emision', 'Emision', 'Emision', 'Emision'];
-
-  final List<String> chapter = const ['24', '24', '24', '8'];
-
-  final List<String> imagenes = const [
-    "assets/Pizza.webp",
-    "assets/Sandia.webp",
-    "assets/Aji.webp",
-    "assets/1.webp",
-  ];
-
-  final List<String> imagenesH = const [
-    "assets/Pizza.webp",
-    "assets/Sandia.webp",
-    "assets/Aji.webp",
-    "assets/horizontal/kimetsuH.png",
-  ];
-
   final Map<String, List<int>> sections = {
-    'Popular': [1, 1, 1],
-    'Emision': [3, 2, 0],
-    'Shonen': [3, 2, 2],
+    'Popular': [1, 3, 2],
+    'Emision': [3, 1, 0],
+    'Shonen': [3, 0, 1],
   };
 
   @override
@@ -82,6 +43,7 @@ class _HomeState extends State<Home> {
         backgroundColor: backgroundColor1,
 
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           backgroundColor: backgroundColor1,
           toolbarHeight: 90,
           title: Text(
@@ -122,8 +84,8 @@ class _HomeState extends State<Home> {
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: items.length,
-                    itemBuilder: (context, index) {
-                      var item = items[index];
+                    itemBuilder: (context, itemIndex) {
+                      Anime anime = animes[items[itemIndex]];
                       return SizedBox(
                         width: 150,
                         child: Column(
@@ -136,13 +98,19 @@ class _HomeState extends State<Home> {
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) => AnimeDetails(
-                                        name: creaciones[item],
-                                        imageH: imagenesH[item],
-                                        genre: genre[item],
-                                        season: season[item],
-                                        state: state[item],
-                                        chapter: chapter[item],
-                                        description: description[item],
+                                        name: anime.name,
+                                        imageH: anime.imageH,
+                                        genre: anime.genre,
+                                        season: anime.season,
+                                        state: anime.state,
+                                        chapter: anime.chapter,
+                                        description: anime.description,
+                                        autor: anime.autor,
+                                        studio: anime.studio,
+                                        year: anime.year,
+                                        dAnime: anime.dAnime,
+                                        dManga: anime.dManga,
+                                        characters: anime.characters,
                                       ),
                                     ),
                                   );
@@ -156,7 +124,7 @@ class _HomeState extends State<Home> {
                                   child: AspectRatio(
                                     aspectRatio: 3 / 4,
                                     child: Image.asset(
-                                      imagenes[item],
+                                      anime.imageP,
                                       fit: BoxFit.cover,
                                     ),
                                   ),
@@ -170,7 +138,7 @@ class _HomeState extends State<Home> {
                                 horizontal: 8,
                               ),
                               child: Text(
-                                creaciones[items[index]],
+                                anime.name,
                                 style: TextStyle(
                                   color: letterColor,
                                   fontSize: 16,
@@ -197,7 +165,10 @@ class _HomeState extends State<Home> {
             mainAxisSize: MainAxisSize.max,
             children: [
               TextButton(
-                onPressed: () => Home(),
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Home()),
+                ),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -210,7 +181,10 @@ class _HomeState extends State<Home> {
                 ),
               ),
               TextButton(
-                onPressed: () => Home,
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Search()),
+                ),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -223,7 +197,10 @@ class _HomeState extends State<Home> {
                 ),
               ),
               TextButton(
-                onPressed: () => Home,
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Favorite()),
+                ),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [

@@ -11,6 +11,12 @@ class AnimeDetails extends StatefulWidget {
     required this.state,
     required this.chapter,
     required this.description,
+    required this.autor,
+    required this.studio,
+    required this.year,
+    required this.dAnime,
+    required this.dManga,
+    required this.characters,
   });
 
   final String name;
@@ -20,6 +26,12 @@ class AnimeDetails extends StatefulWidget {
   final String state;
   final String chapter;
   final String description;
+  final String autor;
+  final String studio;
+  final String year;
+  final List<String> dAnime; //disponible en anime
+  final List<String> dManga; //disponible en manga
+  final List<String> characters;
 
   @override
   State<AnimeDetails> createState() => _AnimeDetailsState();
@@ -110,7 +122,7 @@ class _AnimeDetailsState extends State<AnimeDetails> {
                       IconButton(
                         iconSize: 30,
                         onPressed: () => setState(() {
-                          isfavorite = true;
+                          isfavorite = !isfavorite;
                         }),
                         icon: isfavorite
                             ? Icon(Icons.star)
@@ -162,7 +174,49 @@ class _AnimeDetailsState extends State<AnimeDetails> {
                     "Ficha Tecnica",
                     style: TextStyle(fontSize: 25, color: letterColor),
                   ),
-                  Row(),
+                  const SizedBox(height: 4),
+                  Text(
+                    "Autor: ${widget.autor} \nEstudio: ${widget.studio} \nAño: ${widget.year}",
+                    style: TextStyle(fontSize: 16, color: letterColor),
+                  ),
+
+                  const SizedBox(height: 16),
+                  Text(
+                    "Disponible en: ",
+                    style: TextStyle(fontSize: 25, color: letterColor),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    "Anime: ${widget.dAnime.join(', ')} \nManga: ${widget.dManga.join(', ')}",
+                    style: TextStyle(fontSize: 16, color: letterColor),
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    "Personajes Principales",
+                    style: TextStyle(fontSize: 25, color: letterColor),
+                  ),
+
+                  const SizedBox(height: 4),
+
+                  Container(
+                    width: double.infinity,
+                    padding: EdgeInsets.symmetric(horizontal: 8),
+                    child: Wrap(
+                      spacing: 8.0,
+                      runSpacing: 6.0,
+                      children: List.generate(widget.characters.length, (
+                        index,
+                      ) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Text(
+                            widget.characters[index],
+                            style: TextStyle(fontSize: 16, color: letterColor),
+                          ),
+                        );
+                      }),
+                    ),
+                  ),
                 ],
               ),
             ],
