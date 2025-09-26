@@ -61,3 +61,6 @@ stateDiagram-v2
     AnimeDetails --> Favorite
     
 ```
+
+## Link video explicatorio
+https://youtu.be/Cts8jx8JwIk
