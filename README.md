@@ -1,24 +1,45 @@
-
 # AnimeGuide
 
-Aplicación móvil desarrollada en **Flutter** cuyo objetivo es informar a los usuarios sobre animes y mangas (populares y en emisión). No reproduce capítulos: ofrece ficha informativa completa de cada título.
+Aplicación móvil desarrollada en Flutter, dirigida a aficionados y a quien quiera informarse antes de comenzar un anime o un manga. Proporciona fichas completas por anime/manga y permitiendo marcar favoritos para seguimiento personal. AnimeGuide no reproduce capítulos; solo ofrece información y enlaces externos para consulta.
 
-## Descripción
-AnimeGuide muestra por cada anime/manga: portada, título, sinopsis, género, año, número de capítulos/temporadas, estado (en emisión / finalizado), enlace al tráiler, enlaces externos (dónde ver/leer/comprar), si contiene manga, personajes principales, creador y estudio/house animadora. Permite marcar títulos como favoritos y consultar listas filtradas o buscadas.
+## Pantallas y Funcionalidades principales
+- **Home** 
+    - Sucesion de títulos de anime/manga por categorias, tales como: populares, emision y generos de anime.
+    - Listas horizontales de los animes/mangas por cada categorias, junto a la imagen y titulo
+- **Search** 
+    - Búsqueda en especifico de anime/manga a traves del nombre o mas general a traves del genero.
+    - Resultado con miniatura del anime/manga junto al nombre  
+- **Favorites** 
+    - Lista de animes/mangas agregados a favoritos. 
+    - Posibilidad de eliminar de favoritos
 
-## Funcionalidades principales
-- Listado de animes (recomendados / en emisión / categorías).  
-- Búsqueda de animes por nombre o género.  
-- Pantalla de detalle con: portada grande, título, chips (género · episodios · estado), sinopsis (colapsable), ficha técnica (año, creador, estudio), personajes principales, enlaces externos y botón **Agregar a favoritos**.   
-- Pantalla de bienvenida.  
+- **Anime Detail** 
+    - Ficha del anime/manga en donde se mostrara una portada grande, título, chips (género · episodios · estado), sinopsis (colapsable), ficha técnica (año, creador, estudio), personajes principales, enlaces externos y botón **Agregar a favoritos**.
+- **SplashScreen** 
+    - Pantalla de inicio en donde se muestra el logo de la aplicacion con el nombre de esta, mientras se aparece y desvanece 
 
-## Pantallas
-- **Home** — Sucesion de títulos en emisión + listas por categoría.  
-- **Search** — Búsqueda en especifico de titulo.  
-- **Favorites** — Lista de animes/mangas favoritos.  
-- **Detail** — Ficha del anime/manga.
+## Estructura de ficha de anime
+- Portada: imagen principal horizontal.
 
+- Título: nombre del anime/manga.
 
+- Sinopsis: resumen de la serie.
+
+- Datos: genero principal, temporadas, estado, episodios.
+
+- Ficha tecnica: creador, estudio, año de lanzamiento.
+
+- Personajes principales: lista con nombre e imagen del personaje.
+
+- Enlaces: trailer y enlaces para ver/leer.
+
+- Acciones: boton para agregar/remover de favoritos.
+
+## Pila de Tecnología
+
+Cliente: Flutter, Android
+
+## Diagrama de flujo
 ```mermaid
 stateDiagram-v2
     [*] --> SplashScreen
@@ -40,3 +61,6 @@ stateDiagram-v2
     AnimeDetails --> Favorite
     
 ```
+
+## Link video explicatorio
+https://youtu.be/Cts8jx8JwIk
