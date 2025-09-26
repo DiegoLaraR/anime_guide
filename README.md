@@ -39,6 +39,7 @@ Aplicación móvil desarrollada en Flutter, dirigida a aficionados y a quien qui
 
 Cliente: Flutter, Android
 
+## Diagrama de flujo
 ```mermaid
 stateDiagram-v2
     [*] --> SplashScreen
