@@ -217,6 +217,8 @@ class _AnimeDetailsState extends State<AnimeDetails> {
                       }),
                     ),
                   ),
+
+                  const SizedBox(height: 32),
                 ],
               ),
             ],
