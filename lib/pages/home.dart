@@ -1,5 +1,6 @@
 import 'package:anime_guide/models/anime.dart';
 import 'package:anime_guide/pages/anime_details.dart';
+import 'package:anime_guide/pages/configuration.dart';
 import 'package:anime_guide/pages/favorite.dart';
 import 'package:anime_guide/pages/search.dart';
 import 'package:flutter/material.dart';
@@ -36,24 +37,33 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     final selectionEntries = sections.entries
         .toList(); //Se transforma en iterable y luego lo transformamos en una listo, esto para poder acceder a los indices
+
     return AnimatedOpacity(
       opacity: opacity,
       duration: Duration(milliseconds: 500),
       child: Scaffold(
-        backgroundColor: backgroundColor1,
-
+        //backgroundColor: backgroundColor1,
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          backgroundColor: backgroundColor1,
+          //backgroundColor: backgroundColor1,
           toolbarHeight: 90,
           title: Text(
             "Anime Guide",
             style: TextStyle(
-              color: letterColor,
+              //color: letterColor,
               fontSize: 35,
               fontWeight: FontWeight.bold,
             ),
           ),
+          actions: [
+            IconButton(
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ConfigurationPage()),
+              ),
+              icon: Icon(Icons.settings),
+            ),
+          ],
         ),
 
         body: ListView.builder(
@@ -74,7 +84,7 @@ class _HomeState extends State<Home> {
                     style: TextStyle(
                       fontSize: 23,
                       fontWeight: FontWeight.bold,
-                      color: letterColor,
+                      //color: letterColor,
                     ),
                   ),
                 ),
@@ -111,6 +121,7 @@ class _HomeState extends State<Home> {
                                         dAnime: anime.dAnime,
                                         dManga: anime.dManga,
                                         characters: anime.characters,
+                                        urlTrailer: anime.urlTrailer,
                                       ),
                                     ),
                                   );
@@ -140,7 +151,7 @@ class _HomeState extends State<Home> {
                               child: Text(
                                 anime.name,
                                 style: TextStyle(
-                                  color: letterColor,
+                                  //color: letterColor,
                                   fontSize: 16,
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -172,10 +183,15 @@ class _HomeState extends State<Home> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Icon(Icons.home_filled, size: 40, color: letterColor),
+                    Icon(
+                      Icons.home_filled,
+                      size: 30, //color: letterColor
+                    ),
                     Text(
                       "Inicio",
-                      style: TextStyle(fontSize: 10, color: letterColor),
+                      style: TextStyle(
+                        fontSize: 10, //color: letterColor
+                      ),
                     ),
                   ],
                 ),
@@ -188,10 +204,15 @@ class _HomeState extends State<Home> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Icon(Icons.search, size: 40, color: letterColor),
+                    Icon(
+                      Icons.search,
+                      size: 30, //color: letterColor
+                    ),
                     Text(
                       "Buscar",
-                      style: TextStyle(fontSize: 10, color: letterColor),
+                      style: TextStyle(
+                        fontSize: 10, //color: letterColor
+                      ),
                     ),
                   ],
                 ),
@@ -206,12 +227,14 @@ class _HomeState extends State<Home> {
                   children: [
                     Icon(
                       Icons.star_purple500_outlined,
-                      size: 40,
-                      color: letterColor,
+                      size: 30,
+                      //color: letterColor,
                     ),
                     Text(
                       "Favoritos",
-                      style: TextStyle(fontSize: 10, color: letterColor),
+                      style: TextStyle(
+                        fontSize: 10, //color: letterColor
+                      ),
                     ),
                   ],
                 ),

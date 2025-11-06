@@ -13,6 +13,7 @@ class Anime {
   final List<String> dAnime; //disponible en anime
   final List<String> dManga; //disponible en manga
   final List<String> characters;
+  final String urlTrailer; //url del trailer
 
   Anime(
     this.name,
@@ -29,6 +30,7 @@ class Anime {
     this.dAnime,
     this.dManga,
     this.characters,
+    this.urlTrailer,
   );
 }
 
@@ -48,6 +50,7 @@ final List<Anime> animes = [
     ["Crunchyroll", "Netflix", "Hulu"],
     ["VIZ Media"],
     ["Izuku Midoriya", "Katsuki Bakugo", "All Might", "Ochaco Uraraka"],
+    "https://www.youtube.com/watch?v=EPVkcwyLQQ8",
   ),
   Anime(
     "Hunter X Hunter",
@@ -64,6 +67,7 @@ final List<Anime> animes = [
     ["Crunchyroll", "Netflix", "Amazon Prime Video"],
     ["Manga Plus", "VIZ Media"],
     ["Gon Freecss", "Killua Zoldyck", "Kurapika", "Leorio Paradinight"],
+    "https://www.youtube.com/watch?v=F_YR1T_MdCI",
   ),
   Anime(
     "Shokugeki no Soma",
@@ -80,6 +84,7 @@ final List<Anime> animes = [
     ["Crunchyroll", "Netflix", "Hulu"],
     ["VIZ Media"],
     ["Soma Yukihira", "Erina Nakiri", "Megumi Tadokoro", "Takumi Aldini"],
+    "https://www.youtube.com/watch?v=--v6zWSR_Ko",
   ),
   Anime(
     "Kimetsu no Yaiba",
@@ -101,5 +106,6 @@ final List<Anime> animes = [
       "Zenitsu Agatsuma",
       "Inosuke Hashibira",
     ],
+    "https://www.youtube.com/watch?v=VQGCKyvzIM4",
   ),
 ];

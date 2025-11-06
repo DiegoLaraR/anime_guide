@@ -10,13 +10,9 @@ class Search extends StatefulWidget {
 }
 
 class _SearchState extends State<Search> {
-  Color backgroundColor1 = const Color.fromARGB(255, 39, 39, 39);
-  Color letterColor = const Color.fromARGB(255, 225, 225, 225);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: backgroundColor1,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -26,7 +22,7 @@ class _SearchState extends State<Search> {
               width: 300,
               child: Text(
                 "En esta pantalla el usuario podra buscar un anime o manga en especifico",
-                style: TextStyle(color: letterColor, fontSize: 30),
+                style: TextStyle(fontSize: 30),
               ),
             ),
           ],
@@ -45,11 +41,8 @@ class _SearchState extends State<Search> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(Icons.home_filled, size: 40, color: letterColor),
-                  Text(
-                    "Inicio",
-                    style: TextStyle(fontSize: 10, color: letterColor),
-                  ),
+                  Icon(Icons.home_filled, size: 40),
+                  Text("Inicio", style: TextStyle(fontSize: 10)),
                 ],
               ),
             ),
@@ -61,11 +54,8 @@ class _SearchState extends State<Search> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(Icons.search, size: 40, color: letterColor),
-                  Text(
-                    "Buscar",
-                    style: TextStyle(fontSize: 10, color: letterColor),
-                  ),
+                  Icon(Icons.search, size: 40),
+                  Text("Buscar", style: TextStyle(fontSize: 10)),
                 ],
               ),
             ),
@@ -77,15 +67,8 @@ class _SearchState extends State<Search> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(
-                    Icons.star_purple500_outlined,
-                    size: 40,
-                    color: letterColor,
-                  ),
-                  Text(
-                    "Favoritos",
-                    style: TextStyle(fontSize: 10, color: letterColor),
-                  ),
+                  Icon(Icons.star_purple500_outlined, size: 40),
+                  Text("Favoritos", style: TextStyle(fontSize: 10)),
                 ],
               ),
             ),
