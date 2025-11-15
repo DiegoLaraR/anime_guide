@@ -6,15 +6,19 @@ Aplicación móvil desarrollada en Flutter, dirigida a aficionados y a quien qui
 - **Home** 
     - Sucesion de títulos de anime/manga por categorias, tales como: populares, emision y generos de anime.
     - Listas horizontales de los animes/mangas por cada categorias, junto a la imagen y titulo
+    - Preferencias de mostrar anime por genero
 - **Search** 
     - Búsqueda en especifico de anime/manga a traves del nombre o mas general a traves del genero.
     - Resultado con miniatura del anime/manga junto al nombre  
 - **Favorites** 
     - Lista de animes/mangas agregados a favoritos. 
     - Posibilidad de eliminar de favoritos
-
 - **Anime Detail** 
     - Ficha del anime/manga en donde se mostrara una portada grande, título, chips (género · episodios · estado), sinopsis (colapsable), ficha técnica (año, creador, estudio), personajes principales, enlaces externos y botón **Agregar a favoritos**.
+- **Configuration**
+    - Pantalla de configuracion en la cual se podra configurar el tema con el cual se querra ver la aplicacion, y tamabien se podra configurar el tipo de fuente con el cual se utilizara la aplicacion
+- **Acerca de..**
+    - Se muestra informacion del desarrollador, como comunicarse con el y cual era la idea general de la aplicacion. A la vez encontrara una seccion en la cual puede valorar en general la aplicacion, junto con          dar unas recomendaciones 
 - **SplashScreen** 
     - Pantalla de inicio en donde se muestra el logo de la aplicacion con el nombre de esta, mientras se aparece y desvanece 
 
