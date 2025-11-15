@@ -158,5 +158,7 @@ stateDiagram-v2
     AnimeDetails --> Favorite
 ```
 
+## Link Apk
+https://drive.google.com/drive/folders/1NspFccaT-gWTn00CGW2I0vBl8Yjg38F9?usp=sharing
 ## Link video explicatorio
-https://youtu.be/Cts8jx8JwIk
+https://youtu.be/h_NZGxLGR3I
