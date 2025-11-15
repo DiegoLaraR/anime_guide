@@ -85,28 +85,77 @@ Cliente: Flutter, Android
 - A traves del primer boton se puede acceder a la pantalla "Acerca de" y con el segundo a pantalla de "Configuracion"
 <img width="420" height="71" alt="image" src="https://github.com/user-attachments/assets/2b219508-62e4-40ff-84e9-c11018e6c2c9" />
 
+## Diagrama de flujo - Caso de uso
 
-## Diagrama de flujo
+Buscar un anime y agregarlo a favoritos
+
+```mermaid
+flowchart TD
+  Start([Start]) --> A[Abrir la aplicación]
+  A --> B[Buscar anime]
+  B --> D{¿Está en pantalla home a primera vista?}
+  D -- Sí --> E[Seleccionar anime buscado]
+  D -- No --> F[Seleccionar filtro por género]
+  F --> G{¿Se ve el anime?}
+  G -- Sí --> E
+  G -- No --> H[Entrar en pantalla de búsqueda]
+  H --> I[Ingresar nombre de anime]
+  I --> E
+  E --> J[Presionar botón de favoritos]
+  J --> End([End])
+```
+
+
+## Diagrama de flujo 
 ```mermaid
 stateDiagram-v2
     [*] --> SplashScreen
+
     SplashScreen --> Home
+
     Home --> AnimeDetails
     Home --> Search
     Home --> Favorite
+    Home --> Perfil
+    Home --> Acerca
+    Home --> Configuracion
 
     Search --> Home
     Search --> Favorite
     Search --> AnimeDetails
+    Search --> Perfil
+    Search --> Acerca
+    Search --> Configuracion
 
     Favorite --> Home
     Favorite --> Search
     Favorite --> AnimeDetails
+    Favorite --> Perfil
+    Favorite --> Acerca
+    Favorite --> Configuracion
+
+    Perfil --> Home
+    Perfil --> Search
+    Perfil --> Favorite
+    Perfil --> Acerca
+    Perfil --> Configuracion
+
+    Configuracion --> Home
+    Configuracion --> Search
+    Configuracion --> Favorite
+    Configuracion --> Perfil
+
+    Acerca --> Home
+    Acerca --> Search
+    Acerca --> Favorite
+    Acerca --> Perfil
+    Acerca --> Valorizacion
+
+    Valorizacion --> Acerca
 
     AnimeDetails --> Home
     AnimeDetails --> Search
     AnimeDetails --> Favorite
-    
 ```
 
 ## Link video explicatorio
