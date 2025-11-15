@@ -1,39 +1,14 @@
+import 'package:anime_guide/providers/configuration_data.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
+import 'package:anime_guide/models/anime.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:share_plus/share_plus.dart';
 
 class AnimeDetails extends StatefulWidget {
-  const AnimeDetails({
-    super.key,
-    required this.name,
-    required this.imageH,
-    required this.genre,
-    required this.season,
-    required this.state,
-    required this.chapter,
-    required this.description,
-    required this.autor,
-    required this.studio,
-    required this.year,
-    required this.dAnime,
-    required this.dManga,
-    required this.characters,
-    required this.urlTrailer,
-  });
+  const AnimeDetails({super.key, required this.id});
 
-  final String name;
-  final String imageH;
-  final String genre;
-  final String season;
-  final String state;
-  final String chapter;
-  final String description;
-  final String autor;
-  final String studio;
-  final String year;
-  final List<String> dAnime; //disponible en anime
-  final List<String> dManga; //disponible en manga
-  final List<String> characters;
-  final String urlTrailer;
+  final int id;
 
   @override
   State<AnimeDetails> createState() => _AnimeDetailsState();
@@ -41,6 +16,8 @@ class AnimeDetails extends StatefulWidget {
 
 class _AnimeDetailsState extends State<AnimeDetails> {
   bool isfavorite = false;
+
+  late Anime anime;
 
   Future<void> abrirUrl(String url) async {
     final urlLaunch = Uri.parse(url);
@@ -50,7 +27,13 @@ class _AnimeDetailsState extends State<AnimeDetails> {
   }
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    anime = animes[widget.id];
     return Scaffold(
       body: ListView(
         padding: EdgeInsets.symmetric(horizontal: 16),
@@ -69,7 +52,7 @@ class _AnimeDetailsState extends State<AnimeDetails> {
                   child: Stack(
                     children: [
                       Image.asset(
-                        widget.imageH,
+                        anime.imageH,
                         fit: BoxFit.cover,
                         width: double.infinity,
                         height: double.infinity,
@@ -81,7 +64,7 @@ class _AnimeDetailsState extends State<AnimeDetails> {
                           style: TextButton.styleFrom(
                             backgroundColor: const Color.fromARGB(224, 0, 0, 0),
                           ),
-                          onPressed: () => abrirUrl(widget.urlTrailer),
+                          onPressed: () => abrirUrl(anime.urlTrailer),
                           child: Text("Ver Trailer"),
                         ),
                       ),
@@ -89,7 +72,6 @@ class _AnimeDetailsState extends State<AnimeDetails> {
                         top: 2,
                         left: 8,
                         child: IconButton(
-                          alignment: AlignmentGeometry.center,
                           onPressed: () => Navigator.pop(context),
                           style: IconButton.styleFrom(
                             backgroundColor: const Color.fromARGB(175, 0, 0, 0),
@@ -113,29 +95,76 @@ class _AnimeDetailsState extends State<AnimeDetails> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Text(
-                            textAlign: TextAlign.left,
-                            widget.name,
-                            style: TextStyle(
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold,
+                          SizedBox(
+                            width: 240,
+                            child: Text(
+                              textAlign: TextAlign.left,
+                              anime.name,
+
+                              style: TextStyle(
+                                fontSize: 30,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
+                          const Spacer(),
+                          IconButton(
+                            iconSize: 25,
+                            onPressed: () {
+                              final shareText = StringBuffer();
+                              shareText.writeln('Título: ${anime.name}');
+                              shareText.writeln(
+                                'Género: ${anime.genre} | ${anime.season}',
+                              );
+                              shareText.writeln(
+                                'Estado: ${anime.state} | Episodios: ${anime.chapter}',
+                              );
+                              shareText.writeln('');
+                              shareText.writeln('Sinopsis:');
+                              shareText.writeln(anime.description);
+                              shareText.writeln('');
+                              shareText.writeln(
+                                'Ficha técnica: Autor: ${anime.autor}, Estudio: ${anime.studio}, Año: ${anime.year}',
+                              );
+                              shareText.writeln('');
+                              shareText.writeln(
+                                'Disponible en: Anime: ${anime.dAnime.join(', ')}. Manga: ${anime.dManga.join(', ')}',
+                              );
+                              shareText.writeln('');
+                              shareText.writeln(
+                                'Personajes: ${anime.characters.join(', ')}',
+                              );
+                              shareText.writeln('');
+                              shareText.writeln('Trailer: ${anime.urlTrailer}');
+
+                              SharePlus.instance.share(
+                                ShareParams(text: shareText.toString()),
+                              );
+                            },
+                            icon: Icon(Icons.share),
+                          ),
+
                           IconButton(
                             iconSize: 30,
                             onPressed: () => setState(() {
-                              isfavorite = !isfavorite;
+                              context.read<ConfigurationData>().toogleFavorites(
+                                anime.id,
+                              );
                             }),
-                            icon: isfavorite
+                            icon:
+                                context.read<ConfigurationData>().isFavorite(
+                                  anime.id,
+                                )
                                 ? Icon(Icons.star)
                                 : Icon(Icons.star_border),
                           ),
                         ],
                       ),
+                      const SizedBox(height: 5),
                       Row(
                         children: [
                           Text(
-                            "${widget.genre} | ${widget.season}",
+                            "${anime.genre} | ${anime.season}",
                             style: TextStyle(fontSize: 16),
                           ),
                         ],
@@ -146,7 +175,7 @@ class _AnimeDetailsState extends State<AnimeDetails> {
                       Row(
                         children: [
                           Text(
-                            "${widget.state} | Episodios: ${widget.chapter}",
+                            "${anime.state} | Episodios: ${anime.chapter}",
                             style: TextStyle(fontSize: 16),
                           ),
                         ],
@@ -160,7 +189,7 @@ class _AnimeDetailsState extends State<AnimeDetails> {
                         child: SingleChildScrollView(
                           scrollDirection: Axis.vertical,
                           child: Text(
-                            widget.description,
+                            anime.description,
                             overflow: TextOverflow.fade,
                             style: TextStyle(fontSize: 16),
                           ),
@@ -171,7 +200,7 @@ class _AnimeDetailsState extends State<AnimeDetails> {
                       Text("Ficha Tecnica", style: TextStyle(fontSize: 25)),
                       const SizedBox(height: 4),
                       Text(
-                        "Autor: ${widget.autor} \nEstudio: ${widget.studio} \nAño: ${widget.year}",
+                        "Autor: ${anime.autor} \nEstudio: ${anime.studio} \nAño: ${anime.year}",
                         style: TextStyle(fontSize: 16),
                       ),
 
@@ -179,7 +208,7 @@ class _AnimeDetailsState extends State<AnimeDetails> {
                       Text("Disponible en: ", style: TextStyle(fontSize: 25)),
                       const SizedBox(height: 4),
                       Text(
-                        "Anime: ${widget.dAnime.join(', ')} \nManga: ${widget.dManga.join(', ')}",
+                        "Anime: ${anime.dAnime.join(', ')} \nManga: ${anime.dManga.join(', ')}",
                         style: TextStyle(fontSize: 16),
                       ),
                       const SizedBox(height: 16),
@@ -196,7 +225,7 @@ class _AnimeDetailsState extends State<AnimeDetails> {
                         child: Wrap(
                           spacing: 8.0,
                           runSpacing: 6.0,
-                          children: List.generate(widget.characters.length, (
+                          children: List.generate(anime.characters.length, (
                             index,
                           ) {
                             return Padding(
@@ -204,7 +233,7 @@ class _AnimeDetailsState extends State<AnimeDetails> {
                                 horizontal: 8.0,
                               ),
                               child: Text(
-                                widget.characters[index],
+                                anime.characters[index],
                                 style: TextStyle(fontSize: 16),
                               ),
                             );

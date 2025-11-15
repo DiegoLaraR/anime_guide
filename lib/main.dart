@@ -14,6 +14,8 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    final Color colorDark = const Color.fromARGB(255, 230, 230, 230);
+
     return ChangeNotifierProvider(
       create: (context) => ConfigurationData(SharedPreferencesService()),
       child: Consumer<ConfigurationData>(
@@ -25,18 +27,26 @@ class MyApp extends StatelessWidget {
             theme: ThemeData(
               brightness: Brightness.light,
               colorScheme: ColorScheme.fromSeed(
-                seedColor: const Color.fromARGB(255, 169, 169, 169),
+                seedColor: const Color.fromARGB(255, 255, 255, 255),
                 brightness: Brightness.light,
               ),
               textTheme: config.getTextTheme(ThemeData.light().textTheme),
+
+              textButtonTheme: TextButtonThemeData(
+                style: TextButton.styleFrom(foregroundColor: Colors.black),
+              ),
             ),
             darkTheme: ThemeData(
               brightness: Brightness.dark,
               colorScheme: ColorScheme.fromSeed(
-                seedColor: Colors.deepPurple,
+                seedColor: colorDark,
                 brightness: Brightness.dark,
               ),
               textTheme: config.getTextTheme(ThemeData.dark().textTheme),
+
+              textButtonTheme: TextButtonThemeData(
+                style: TextButton.styleFrom(foregroundColor: colorDark),
+              ),
             ),
 
             home: SplashScreen(),

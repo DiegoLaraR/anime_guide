@@ -1,4 +1,4 @@
-package com.example.anime_guide
+package cl.lara.diego
 
 import io.flutter.embedding.android.FlutterActivity
 

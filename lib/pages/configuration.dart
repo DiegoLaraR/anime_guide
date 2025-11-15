@@ -24,7 +24,7 @@ class ConfigurationPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
 
           children: [
-            Text("Tema", style: TextStyle(fontSize: 23)),
+            const Text("Tema", style: TextStyle(fontSize: 23)),
             DropdownButtonFormField<String>(
               initialValue:
                   context.watch<ConfigurationData>().getTheme == 'light'
@@ -55,7 +55,7 @@ class ConfigurationPage extends StatelessWidget {
 
             const SizedBox(height: 24),
 
-            Text("Fuente", style: TextStyle(fontSize: 23)),
+            const Text("Fuente", style: TextStyle(fontSize: 23)),
             DropdownButtonFormField<String>(
               initialValue: context.watch<ConfigurationData>().getFontFamily,
               items: fonts
@@ -67,8 +67,9 @@ class ConfigurationPage extends StatelessWidget {
                   )
                   .toList(),
               onChanged: (value) {
-                if (value != null)
+                if (value != null) {
                   context.read<ConfigurationData>().setFontFamily(value);
+                }
               },
             ),
           ],
