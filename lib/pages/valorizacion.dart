@@ -1,8 +1,9 @@
 import 'dart:convert';
+import 'package:anime_guide/providers/configuration_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:anime_guide/models/question.dart';
 
 class ValorizacionPage extends StatefulWidget {
@@ -14,9 +15,11 @@ class ValorizacionPage extends StatefulWidget {
 class _ValorizacionPageState extends State<ValorizacionPage> {
   Map<String, List<Question>> sections = {};
   final TextEditingController _idController = TextEditingController();
+  final Map<String, List<TextEditingController>> _recControllers = {};
+
   bool loading = true;
 
-  static const String developerEmail = 'gaviotafelix95@gmail.com';
+  static const String developerEmail = 'dilara23@alumnos.utalca.cl';
 
   @override
   void initState() {
@@ -26,14 +29,7 @@ class _ValorizacionPageState extends State<ValorizacionPage> {
   }
 
   Future<void> _loadSavedId() async {
-    final prefs = await SharedPreferences.getInstance();
-    final saved = prefs.getString('user_id') ?? '';
-    _idController.text = saved;
-  }
-
-  Future<void> _saveId(String id) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('user_id', id);
+    _idController.text = context.read<ConfigurationData>().getUsername;
   }
 
   Future<void> _loadQuestions() async {
@@ -47,6 +43,12 @@ class _ValorizacionPageState extends State<ValorizacionPage> {
             .map((e) => Question.fromMap(e as Map<String, dynamic>))
             .toList();
         parsed[key] = list;
+        parsed.forEach((key, list) {
+          _recControllers[key] = List.generate(
+            list.length,
+            (i) => TextEditingController(text: list[i].recomendacion),
+          );
+        });
       });
 
       setState(() {
@@ -63,7 +65,6 @@ class _ValorizacionPageState extends State<ValorizacionPage> {
 
   Future<void> _sendFeedback() async {
     final userId = _idController.text.trim();
-    await _saveId(userId);
 
     final buffer = StringBuffer();
     buffer.writeln('Aplicación: Anime Guide');
@@ -75,6 +76,9 @@ class _ValorizacionPageState extends State<ValorizacionPage> {
       for (var q in questions) {
         buffer.writeln(q.titulo);
         buffer.writeln('Valor: ${q.valor}');
+        buffer.writeln(
+          'Rec../Com../Porque: ${q.recomendacion.isEmpty ? "N/A" : q.recomendacion}',
+        );
         buffer.writeln('');
       }
     });
@@ -122,7 +126,7 @@ class _ValorizacionPageState extends State<ValorizacionPage> {
                 hintText: 'Escribe tu identificacion',
               ),
               textInputAction: TextInputAction.done,
-              onSubmitted: (v) => _saveId(v.trim()),
+              onSubmitted: (v) => v.trim(),
             ),
             const SizedBox(height: 12),
             // Lista de secciones y preguntas
@@ -170,6 +174,7 @@ class _ValorizacionPageState extends State<ValorizacionPage> {
             const SizedBox(height: 8),
             ...questions.asMap().entries.map((entry) {
               final q = entry.value;
+              final controller = _recControllers[title]![entry.key];
               return Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: Column(
@@ -204,6 +209,19 @@ class _ValorizacionPageState extends State<ValorizacionPage> {
                         ),
                       ],
                     ),
+                    const SizedBox(height: 6),
+                    TextFormField(
+                      controller: controller,
+                      maxLines: 1,
+                      decoration: const InputDecoration(
+                        labelText: 'Recomendación / Comentario / Por que',
+                        border: OutlineInputBorder(),
+                        isDense: true,
+                      ),
+                      onChanged: (v) {
+                        q.recomendacion = v;
+                      },
+                    ),
                     const SizedBox(height: 4),
                     Text('0: ${q.min}', style: const TextStyle(fontSize: 12)),
                     Text('5: ${q.max}', style: const TextStyle(fontSize: 12)),
@@ -220,6 +238,11 @@ class _ValorizacionPageState extends State<ValorizacionPage> {
   @override
   void dispose() {
     _idController.dispose();
+    for (final list in _recControllers.values) {
+      for (final c in list) {
+        c.dispose();
+      }
+    }
     super.dispose();
   }
 }

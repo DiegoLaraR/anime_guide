@@ -26,6 +26,11 @@ class ConfigurationPage extends StatelessWidget {
           children: [
             const Text("Tema", style: TextStyle(fontSize: 23)),
             DropdownButtonFormField<String>(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
               initialValue:
                   context.watch<ConfigurationData>().getTheme == 'light'
                   ? 'Light'
@@ -57,6 +62,11 @@ class ConfigurationPage extends StatelessWidget {
 
             const Text("Fuente", style: TextStyle(fontSize: 23)),
             DropdownButtonFormField<String>(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
               initialValue: context.watch<ConfigurationData>().getFontFamily,
               items: fonts
                   .map(

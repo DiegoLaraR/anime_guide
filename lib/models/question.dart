@@ -3,12 +3,14 @@ class Question {
   final String min;
   final String max;
   int valor;
+  String recomendacion;
 
   Question({
     required this.titulo,
     required this.min,
     required this.max,
     this.valor = 0,
+    this.recomendacion = '',
   });
 
   factory Question.fromMap(Map<String, dynamic> m) => Question(
@@ -16,6 +18,7 @@ class Question {
     min: m['min'] ?? '',
     max: m['max'] ?? '',
     valor: (m['valor'] as num?)?.toInt() ?? 0,
+    recomendacion: m['recomendacion'] ?? '',
   );
 
   Map<String, dynamic> toMap() => {
@@ -23,5 +26,6 @@ class Question {
     'min': min,
     'max': max,
     'valor': valor,
+    'recomendacion': recomendacion,
   };
 }

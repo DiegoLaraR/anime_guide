@@ -41,7 +41,6 @@ class _HomeState extends State<Home> {
   ];
 
   String selectedPreference = 'Normal';
-
   late final Map<String, Map<String, List<int>>> preferenceSections;
 
   @override
@@ -89,10 +88,10 @@ class _HomeState extends State<Home> {
               onPressed: () => {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Acerca()),
+                  MaterialPageRoute(builder: (context) => const Acerca()),
                 ),
               },
-              icon: Icon(Icons.info_outline_rounded, size: sizeButton),
+              icon: const Icon(Icons.info_outline_rounded, size: sizeButton),
             ),
             IconButton(
               onPressed: () => {
@@ -101,7 +100,7 @@ class _HomeState extends State<Home> {
                   MaterialPageRoute(builder: (context) => ConfigurationPage()),
                 ),
               },
-              icon: Icon(Icons.settings, size: sizeButton),
+              icon: const Icon(Icons.settings, size: sizeButton),
             ),
           ],
         ),
@@ -177,9 +176,7 @@ class _HomeState extends State<Home> {
                             scrollDirection: Axis.horizontal,
                             itemCount: items.length,
                             itemBuilder: (context, itemIndex) {
-                              //
                               Anime anime = animes[items[itemIndex]];
-                              //
 
                               return SizedBox(
                                 width: 150,
@@ -246,6 +243,7 @@ class _HomeState extends State<Home> {
             ],
           ),
         ),
+
         persistentFooterButtons: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -254,7 +252,7 @@ class _HomeState extends State<Home> {
               TextButton(
                 onPressed: () => Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Home()),
+                  MaterialPageRoute(builder: (context) => const Home()),
                 ),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
@@ -267,7 +265,7 @@ class _HomeState extends State<Home> {
               TextButton(
                 onPressed: () => Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Search()),
+                  MaterialPageRoute(builder: (context) => const Search()),
                 ),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
@@ -280,7 +278,7 @@ class _HomeState extends State<Home> {
               TextButton(
                 onPressed: () => Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Favorite()),
+                  MaterialPageRoute(builder: (context) => const Favorite()),
                 ),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
@@ -293,7 +291,7 @@ class _HomeState extends State<Home> {
               TextButton(
                 onPressed: () => Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Profile()),
+                  MaterialPageRoute(builder: (context) => const Profile()),
                 ),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
