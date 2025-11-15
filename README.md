@@ -13,6 +13,9 @@ Aplicación móvil desarrollada en Flutter, dirigida a aficionados y a quien qui
 - **Favorites** 
     - Lista de animes/mangas agregados a favoritos. 
     - Posibilidad de eliminar de favoritos
+- **Perfil**
+    -  Configuracion de foto de perfil
+    -  Configuracion de nombre de usuario
 - **Anime Detail** 
     - Ficha del anime/manga en donde se mostrara una portada grande, título, chips (género · episodios · estado), sinopsis (colapsable), ficha técnica (año, creador, estudio), personajes principales, enlaces externos y botón **Agregar a favoritos**.
 - **Configuration**
@@ -42,6 +45,46 @@ Aplicación móvil desarrollada en Flutter, dirigida a aficionados y a quien qui
 ## Pila de Tecnología
 
 Cliente: Flutter, Android
+
+## Capturas de pantalla
+
+**Pantalla de Home**
+
+<img width="226" height="716" alt="image" src="https://github.com/user-attachments/assets/5c939b29-1f7f-4014-b82f-0d6fe781afa8" />
+
+**Pantalla de Search**
+
+<img width="224" height="723" alt="image" src="https://github.com/user-attachments/assets/ffaec790-638f-4886-8899-dc77ede7761f" />
+
+**Pantalla de favoritos**
+
+<img width="227" height="707" alt="image" src="https://github.com/user-attachments/assets/c02c4874-2f02-4411-929a-ad644d9810d7" />
+
+**Pantalla de Perfil**
+
+<img width="223" height="721" alt="image" src="https://github.com/user-attachments/assets/f6e6d3a4-465b-4a89-9226-f92b780a2096" />
+
+**Pantalla de Acerca de..**
+
+<img width="219" height="696" alt="image" src="https://github.com/user-attachments/assets/e3f70d01-247f-42ca-85ea-27095b76cf6b" />
+
+**Pnatalla de Configuracion**
+
+<img width="235" height="699" alt="image" src="https://github.com/user-attachments/assets/d6e30f4e-55b7-4f4e-97b7-6eb73d645b2d" />
+
+
+**Barra de navegacion**
+- Home: Pantalla donde se muestran animes
+- Search: Pantalla para buscar animes
+- Favoritos: Pantalla para mostrar animes favoritos
+- Pefil: Pantalla donde se ve el perfil del usuario
+
+<img width="391" height="168" alt="image" src="https://github.com/user-attachments/assets/7ad1b2e5-e9b3-47a5-8930-1970807cbe65" />
+
+**Acceso a pantalla "Acerca de" y "Configuracion"**
+- A traves del primer boton se puede acceder a la pantalla "Acerca de" y con el segundo a pantalla de "Configuracion"
+<img width="420" height="71" alt="image" src="https://github.com/user-attachments/assets/2b219508-62e4-40ff-84e9-c11018e6c2c9" />
+
 
 ## Diagrama de flujo
 ```mermaid
